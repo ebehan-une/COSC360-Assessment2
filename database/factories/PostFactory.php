@@ -1,8 +1,9 @@
 <?php
 
 namespace Database\Factories;
-
+use App\Models\Category;
 use App\Models\Model;
+use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,9 @@ class PostFactory extends Factory
     {
         return [
             'title' => fake()->text(50),
-            'content' => fake()->paragraph()
+            'content' => fake()->paragraph(),
+            'user_id' => User::all()->random()->id ?? User::factory(),
+            'category_id' => Category::all()->random()->id ?? Category::factory()
         ];
     }
 }

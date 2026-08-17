@@ -2,8 +2,8 @@
 
 namespace Database\Seeders;
 
+use App\Models\Category;
 use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -13,8 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
+        // Generate Administrator & General Account:
         User::factory()->create([
             'name' => 'Admin User',
             'email' => 'admin@example.com',
@@ -25,5 +24,9 @@ class DatabaseSeeder extends Seeder
             'email' => 'user@example.com',
             'type' => 'user',
         ]);
+
+        // In-Order Generate Categories & Posts.
+        (new CategorySeeder())->run();
+        (new PostSeeder())->run();
     }
 }
