@@ -1,9 +1,6 @@
 <?php
 
 namespace App\Http\Requests;
-
-use App\Models\Category;
-use App\Models\User;
 use Illuminate\Contracts\Validation\ValidationRule;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -14,7 +11,7 @@ class PostRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+        return true; // Middleware instead blocks access by routing.
     }
 
     /**
@@ -27,6 +24,7 @@ class PostRequest extends FormRequest
         return [
             'title' => 'required|max:50',
             'content' => 'required',
+            'category_id' => 'required',
         ];
     }
 }

@@ -14,6 +14,9 @@
 
     <!-- Custom Styles -->
     @stack('styles')
+
+    <!-- CSS Blog Reference -->
+    <link rel="stylesheet" href={{ asset('css/blog.css') }}>
 </head>
 
 <body>
@@ -31,10 +34,10 @@
                         <a class="nav-link" href="/">Dashboard</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Posts</a>
+                        <a class="nav-link" href="{{ route('admin.posts.index') }}">Posts</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Categories</a>
+                        <a class="nav-link" href="{{ route('admin.categories.index') }}">Categories</a>
                     </li>
                     <!-- Authentication Links -->
                     @guest

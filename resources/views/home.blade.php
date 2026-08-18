@@ -3,12 +3,13 @@
 @section('title', 'All Posts')
 
 @section('content')
+    <!-- Header -->
     <div class="d-flex justify-content-between align-items-center mb-3">
-        <h2 class="mb-0">Posts</h2>
-        <a href="#" class="btn btn-primary">+ Create New Post</a>
+        <h2 class="mb-0">Blog History</h2>
     </div>
-
+    <!-- Post Table -->
     <table class="table table-bordered table-striped">
+        <!-- Table Header -->
         <thead class="table-dark">
             <tr>
                 <th>#</th>
@@ -16,27 +17,20 @@
                 <th>Content</th>
                 <th>Category</th>
                 <th>Created At</th>
-                <th style="width: 150px;">Actions</th>
             </tr>
         </thead>
+        <!-- Table Body -->
         <tbody>
-            @for ($i = 1; $i <= 10; $i++)
+            <!-- Display all Posts -->
+            @foreach($posts as $post)
                 <tr>
-                    <td>{{ $i }}</td>
-                    <td>Sample Post Title {{ $i }}</td>
-                    <td>Lorem ipsum dolor sit amet, consectetur adipiscing elit. {{ $i }}</td>
-                    <td>Lorem {{ $i }}</td>
-                    <td>{{ now()->subDays(10 - $i)->format('d M Y') }}</td>
-                    <td>
-                        <a href="#" class="btn btn-sm btn-warning">Edit</a>
-                        <form action="#" method="POST" class="d-inline" onsubmit="return confirm('Delete this post?');">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-sm btn-danger">Delete</button>
-                        </form>
-                    </td>
+                    <td>{{ $post->id }}</td>
+                    <td>{{ $post->title }}</td>
+                    <td>{{ $post->content }}</td>
+                    <td>{{ $post->category->name ?? 'Uncategorised' }}</td>
+                    <td>{{ $post->created_at->format('d M Y') }}</td>
                 </tr>
-            @endfor
+            @endforeach
         </tbody>
     </table>
 @endsection

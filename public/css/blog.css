@@ -1,0 +1,20 @@
+.error-message {
+    color:red;
+    padding: 10px;
+}
+
+.error-asterisk {
+    color: red;
+}
+
+.error-main {
+    text-align: center;
+}
+
+.blog-label {
+    font-weight: bold;
+}
+
+.blog-textarea {
+    width: 100%;
+}
