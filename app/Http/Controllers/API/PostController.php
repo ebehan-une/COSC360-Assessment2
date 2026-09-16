@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\PostRequest;
 use App\Models\Post;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Support\Facades\Auth;
 
 /**
  * PostController.
@@ -21,7 +20,7 @@ class PostController extends Controller
      */
     public function index(): JsonResponse {
 
-        $posts = Post::all();
+        $posts = Post::with( 'category' )->latest()->get();
 
         return response()->json($posts, 200);
 
@@ -52,7 +51,7 @@ class PostController extends Controller
      */
     public function show(string $id): JsonResponse {
 
-        $post = Post::findOrFail($id);
+        $post = Post::with( 'category' )->findOrFail($id);
 
         return response()->json($post, 200);
 
